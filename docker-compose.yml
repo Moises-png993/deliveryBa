@@ -11,7 +11,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /home/moimo98/NetBeansProjects/DeliveryGroup/Delivery/src/test/resources/iniciarDelivery.sql:/docker-entrypoint-initdb.d/iniciarDelivery.sql
+      - db_data:/var/lib/postgresql/data
+      - ${PWD}/src/test/resources/iniciarDelivery.sql:/docker-entrypoint-initdb.d/iniciarDelivery.sql
     networks:
       - delivery_net
 
@@ -19,10 +20,11 @@ services:
     image: delivery_payara/full:6.2023.3-jdk17
     ports:
       - "4848:4848"
-      - "8080:8080"
-      - "8181:8181"
+      - "8282:8080"
     depends_on:
       - postgres
+    volumes:
+      - ${PWD}/target/Delivery-1.0.0-SNAPSHOT.war:/opt/payara/deployments/deliveryApp.war
     networks:
       - delivery_net
   pgadmin:
