@@ -131,7 +131,7 @@ public class ComercioIT {
         //validar excepciones
         respuesta = target.path("/comercio").request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(null));
-        Assertions.assertEquals(200, respuesta.getStatus());
+        Assertions.assertEquals(400, respuesta.getStatus());
     }
 
     /**
