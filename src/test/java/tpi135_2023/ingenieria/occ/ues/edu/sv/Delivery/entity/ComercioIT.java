@@ -234,7 +234,7 @@ public class ComercioIT {
                 .resolveTemplate("idTipoComercio", 9999)
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity("", MediaType.APPLICATION_JSON));
-        Assertions.assertEquals(200, respuesta.getStatus());
+        Assertions.assertEquals(400, respuesta.getStatus());
     }
 
     /**
